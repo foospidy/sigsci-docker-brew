@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 brew=$(which brew)
 if [ -z "$brew" ];
 then
@@ -24,7 +22,7 @@ then
 fi
 
 dockerimage=$(docker-machine ls | grep sigsci)
-if [ "$?" != "0" ];
+if [ "$dockerimage" = "" ];
 then
     echo "Sigsci docker image not found. Creating Docker image..."
     docker-machine create --driver virtualbox --virtualbox-disk-size 2048 --virtualbox-memory 1024 sigsci
