@@ -2,6 +2,8 @@
 
 Install and setup of a docker image for running Signal Sciences in reverse proxy mode on OSX
 
+[![Build Status](https://travis-ci.org/foospidy/sigsci-docker-brew.svg?branch=master)](https://travis-ci.org/foospidy/sigsci-docker-brew)
+
 ### Dependencies
 
 Before running, make sure you have the follwing tools installed on your Mac.
