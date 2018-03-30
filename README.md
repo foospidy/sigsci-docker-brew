@@ -18,7 +18,7 @@ Before running, make sure you have the follwing tools installed on your Mac.
     - `$ export SIGSCI_SECRETACCESSKEY=<key>`
 2. Run `./sigsci_osx.sh`
 
-This script will install docker and docker-machine if you don't already have it installed. By defualt it will start a docker container with the agent in reverse proxy mode listening on port 80, and proxy connections to port 8080 (the web app running on your Mac).
+This script will install docker and docker-machine if you don't already have it installed. By default it will start a docker container with the agent in reverse proxy mode listening on port 80, and proxy connections to port 8080 (the web app running on your Mac).
 
 Optionally, you can adjust configuration with the following variables:
 
