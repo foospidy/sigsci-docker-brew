@@ -27,11 +27,10 @@ This script will install docker and docker-machine if you don't already have it 
 Optionally, you can adjust configuration with the following variables:
 
 - SIGSCI_PORT - this is the port the agent will listen on.
-    - Example: `export SIGSCI_PORT=8080`
+  - Example: `export SIGSCI_PORT=8080`
 - SIGSCI_WEBAPP_HOST - this is the ip address of the host running your web application.
-    - Example: `export SIGSCI_WEBAPP_HOST=192.168.1.5`
+  - Example: `export SIGSCI_WEBAPP_HOST=192.168.1.5`
 - SIGSCI_WEBAPP_PORT - this is the port your web application is listening on.
-    - Example: `export SIGSCI_WEBAPP_PORT=8085`
-
+  - Example: `export SIGSCI_WEBAPP_PORT=8085`
 
 When the docker container starts you will see the agent start up and the agent logs. You can press ctrl+c to stop the agent and the container.
