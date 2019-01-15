@@ -63,13 +63,26 @@ eval "$(docker-machine env sigsci)"
 
 docker build -t sigsci-agent:latest .
 
-docker run \
-    -i \
-    -p "$SIGSCI_AGENT_PORT:80" \
-    --add-host="my.mac.localhost:$SIGSCI_WEBAPP_HOST" \
-    -e SIGSCI_ACCESSKEYID="$SIGSCI_ACCESSKEYID" \
-    -e SIGSCI_SECRETACCESSKEY="$SIGSCI_SECRETACCESSKEY" \
-    -e SIGSCI_REVERSE_PROXY="true" \
-    -e SIGSCI_REVERSE_PROXY_LISTENER="0.0.0.0:80" \
-    -e SIGSCI_REVERSE_PROXY_UPSTREAM="my.mac.localhost:$SIGSCI_WEBAPP_PORT" \
-    -t sigsci-agent:latest
+if [ "$1" == "sidecar" ];
+then
+    echo "Starting agent as sidecar"
+    export SIGSCI_RPC_ADDRESS="0.0.0.0:9999"
+    docker run \
+        -i \
+        -p "9999:9999" \
+        -e SIGSCI_ACCESSKEYID="$SIGSCI_ACCESSKEYID" \
+        -e SIGSCI_SECRETACCESSKEY="$SIGSCI_SECRETACCESSKEY" \
+        -e SIGSCI_RPC_ADDRESS="$SIGSCI_RPC_ADDRESS" \
+        -t sigsci-agent:latest
+else
+    docker run \
+        -i \
+        -p "$SIGSCI_AGENT_PORT:80" \
+        --add-host="my.mac.localhost:$SIGSCI_WEBAPP_HOST" \
+        -e SIGSCI_ACCESSKEYID="$SIGSCI_ACCESSKEYID" \
+        -e SIGSCI_SECRETACCESSKEY="$SIGSCI_SECRETACCESSKEY" \
+        -e SIGSCI_REVERSE_PROXY="true" \
+        -e SIGSCI_REVERSE_PROXY_LISTENER="0.0.0.0:80" \
+        -e SIGSCI_REVERSE_PROXY_UPSTREAM="my.mac.localhost:$SIGSCI_WEBAPP_PORT" \
+        -t sigsci-agent:latest
+fi
